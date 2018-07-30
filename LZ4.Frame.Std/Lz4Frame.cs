@@ -1,8 +1,13 @@
-﻿#define NETSTANDARD
-using System;
+﻿using System;
 using System.Diagnostics;
 using System.IO;
+
+#if NETFX
+using Extensions.Data;
+#endif
+#if NETSTANDARD
 using NeoSmart.Hashing.XXHash.Core;
+#endif
 
 namespace LZ4.Frame
 {
