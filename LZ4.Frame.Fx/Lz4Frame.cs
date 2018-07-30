@@ -339,7 +339,8 @@ namespace LZ4.Frame
                 {
                     if (br.ReadUInt32() != XXHash.XXH32(blockData))
                     {
-                        Debug.WriteLine("Block Checksum incorrect");
+                        //Debug.WriteLine("Block Checksum incorrect");
+                        throw new FormatException("Block Checksum incorrect");
                     }
                 }
             }
@@ -352,7 +353,8 @@ namespace LZ4.Frame
                 var cc = end != 0 ? end : br.ReadUInt32();
                 if (XXHash.XXH32(output) != cc)
                 {
-                    Debug.WriteLine("Block Checksum incorrect");
+                    Debug.WriteLine("Content Checksum incorrect");
+                    //throw new FormatException("Content Checksum incorrect");
                 }
             }
 

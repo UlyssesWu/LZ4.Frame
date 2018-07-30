@@ -11,7 +11,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyCompany("Monarch Solutions")]
 [assembly: AssemblyProduct("LZ4.Frame")]
 [assembly: AssemblyCopyright("Copyright © Ulysses Wu & Rune Henriksen 2018")]
-[assembly: AssemblyTrademark("")]
+[assembly: AssemblyTrademark("wdwxy12345@gmail.com")]
 [assembly: AssemblyCulture("")]
 
 // 将 ComVisible 设置为 false 会使此程序集中的类型
