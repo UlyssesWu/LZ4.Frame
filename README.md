@@ -4,10 +4,10 @@
 ## Why not...
 
 ### [lz4net](https://github.com/MiloszKrajewski/lz4net)
-lz4net is great, but [lacking](https://github.com/MiloszKrajewski/lz4net#compatibility) LZ4 Frame support. This project is based on lz4net and enable LZ4 Frame support.
+lz4net is great, but [lacking](https://github.com/MiloszKrajewski/lz4net#compatibility) LZ4 Frame support. This project is based on lz4net and enables LZ4 Frame support.
 
 ### [lz4.net](https://github.com/IonKiwi/lz4.net)
-lz4.net is a C++/CLI wrapper for native LZ4. I love C++/ClI solutions but that means it only works on Windows platforms. This project is fully managed, therefore it's easier to compile, modify, and go cross-platform.
+lz4.net is a C++/CLI wrapper for native LZ4. I love C++/CLI solutions but that means it only works on Windows platforms. This project is fully managed, therefore it's easier to compile, modify, and go cross-platform.
 
 ## TODO
 These features are not implemented:
