@@ -1,4 +1,5 @@
-﻿using System;
+﻿#define NETSTANDARD
+using System;
 using System.Diagnostics;
 using System.IO;
 using NeoSmart.Hashing.XXHash.Core;
@@ -217,7 +218,7 @@ namespace LZ4.Frame
         public static byte[] Decompress(Stream input)
         {
             BinaryReader br = new BinaryReader(input);
-
+            MemoryStream ms;
             //Magic
             if (br.ReadInt32() != MAGIC)
             {
@@ -246,6 +247,12 @@ namespace LZ4.Frame
                 fdLength += 8;
                 contentSize = br.ReadUInt64();
                 Debug.WriteLine("Expected content size: " + contentSize);
+                var content = new byte[contentSize];
+                ms = new MemoryStream(content, 0, content.Length, true, true);
+            }
+            else
+            {
+                ms = new MemoryStream();
             }
 
             // Parse dictionary ID
@@ -270,7 +277,6 @@ namespace LZ4.Frame
             }
 
             //var blockCount = 0;
-            var output = new byte[contentSize];
             int outputOffset = 0;
             //Block
             while (true)
@@ -294,17 +300,40 @@ namespace LZ4.Frame
                     blockSize &= ~(1 << 31);
                 }
 
-                var sizeRemain = output.Length - outputOffset;
                 var blockData = br.ReadBytes(blockSize);
-                if (dataIsUncompressed)
+                if (contentSizeFLag)
                 {
-                    Array.Copy(blockData, 0, output, outputOffset, blockData.Length);
+                    var sizeRemain = (int)ms.Length - outputOffset;
+#if NETSTANDARD
+                    ms.TryGetBuffer(out var bufferSeg);
+                    var buffer = bufferSeg.Array;
+#else
+                    var buffer = ms.GetBuffer();
+#endif
+                    if (dataIsUncompressed)
+                    {
+                        Array.Copy(blockData, 0, buffer, outputOffset, blockData.Length);
+                    }
+                    else
+                    {
+                        var outputLen = LZ4Codec.Decode(blockData, 0, blockData.Length, buffer, outputOffset,
+                            blockMaxSize > sizeRemain ? sizeRemain : blockMaxSize);
+                        outputOffset += outputLen;
+                    }
                 }
                 else
                 {
-                    var outputLen = LZ4Codec.Decode(blockData, 0, blockData.Length, output, outputOffset,
-                        blockMaxSize > sizeRemain ? sizeRemain : blockMaxSize);
-                    outputOffset += outputLen;
+                    if (dataIsUncompressed)
+                    {
+                        ms.Write(blockData, 0, blockData.Length);
+                    }
+                    else
+                    {
+                        var decoded = new byte[blockMaxSize];
+                        var outputLen = LZ4Codec.Decode(blockData, 0, blockData.Length, decoded, 0, blockMaxSize);
+                        ms.Write(decoded, 0, outputLen);
+                        outputOffset += outputLen;
+                    }
                 }
 
                 if (blockChecksumFlag)
@@ -316,6 +345,7 @@ namespace LZ4.Frame
                 }
             }
 
+            var output = ms.ToArray();
             var end = br.ReadUInt32();
             // Content Checksum
             if (contentChecksumFlag)
@@ -326,6 +356,8 @@ namespace LZ4.Frame
                     Debug.WriteLine("Block Checksum incorrect");
                 }
             }
+
+            br.Dispose();
             return output;
         }
     }

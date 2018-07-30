@@ -330,3 +330,4 @@ ASALocalRun/
 .mfractor/
 /LZ4.Frame/*.DotSettings
 /LZ4.Frame.Std/*.DotSettings
+/LZ4.Frame.Tests/Res

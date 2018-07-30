@@ -52,6 +52,12 @@
       <Version>1.2.1</Version>
     </PackageReference>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LZ4.Frame.Fx\LZ4.Frame.csproj">
+      <Project>{803e355e-a55d-4af4-88bd-5eab62fd68ad}</Project>
+      <Name>LZ4.Frame</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
