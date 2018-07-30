@@ -153,7 +153,7 @@ namespace LZ4.Frame
 
                 while (true)
                 {
-                    var pos = bw.BaseStream.Position;
+                    //var pos = bw.BaseStream.Position;
                     var remain = (int)(br.BaseStream.Length - br.BaseStream.Position);
                     if (remain == 0)
                     {
@@ -175,7 +175,6 @@ namespace LZ4.Frame
                         }
                         else
                         {
-                            blockSize |= 0 << 31;
                             bw.Write(blockSize);
                             bw.Write(compressed);
                         }
@@ -258,7 +257,7 @@ namespace LZ4.Frame
             }
 
             // Parse Header Checksum
-            var pos = br.BaseStream.Position;
+            //var pos = br.BaseStream.Position;
             br.BaseStream.Seek(-fdLength, SeekOrigin.Current);
             var fdCheck = br.ReadBytes(fdLength);
             var hc = br.ReadByte();
@@ -270,13 +269,13 @@ namespace LZ4.Frame
                 throw new FormatException("Header doesn't match checksum");
             }
 
-            var blockCount = 0;
+            //var blockCount = 0;
             var output = new byte[contentSize];
             int outputOffset = 0;
             //Block
             while (true)
             {
-                pos = br.BaseStream.Position;
+                //pos = br.BaseStream.Position;
                 var blockSize = br.ReadInt32();
                 if (blockSize == 0)
                 {
@@ -284,8 +283,8 @@ namespace LZ4.Frame
                 }
 
                 var dataIsUncompressed = false;
-                blockCount++;
-                var binary = Convert.ToString(blockSize, 2);
+                //blockCount++;
+                //var binary = Convert.ToString(blockSize, 2);
                 // Check if the data is compressed by inspecting the highest bit - 0 for compressed, 1 for uncompressed
                 if ((blockSize >> 31) == 1)
                 {
@@ -297,14 +296,15 @@ namespace LZ4.Frame
 
                 var sizeRemain = output.Length - outputOffset;
                 var blockData = br.ReadBytes(blockSize);
-                if (!dataIsUncompressed)
+                if (dataIsUncompressed)
                 {
-                    var outputLen = LZ4Codec.Decode(blockData, 0, blockData.Length, output, outputOffset, blockMaxSize > sizeRemain ? sizeRemain : blockMaxSize);
-                    outputOffset += outputLen;
+                    Array.Copy(blockData, 0, output, outputOffset, blockData.Length);
                 }
                 else
                 {
-                    Array.Copy(blockData, 0, output, outputOffset, blockData.Length);
+                    var outputLen = LZ4Codec.Decode(blockData, 0, blockData.Length, output, outputOffset,
+                        blockMaxSize > sizeRemain ? sizeRemain : blockMaxSize);
+                    outputOffset += outputLen;
                 }
 
                 if (blockChecksumFlag)
