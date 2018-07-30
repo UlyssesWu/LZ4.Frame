@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.3</TargetFramework>
+    <RootNamespace>LZ4.Frame</RootNamespace>
+    <Authors>Ulysses Wu &amp; Rune Henriksen</Authors>
+    <Description>LZ4 Frame compression &amp; decompression for .NET</Description>
+    <Copyright>Copyright © 2018 Ulysses Wu &amp; Rune Henriksen</Copyright>
+    <PackageProjectUrl>https://github.com/UlyssesWu/LZ4.Frame</PackageProjectUrl>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <LangVersion>7.2</LangVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <LangVersion>7.2</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="LZ4.Frame.Std.csproj.DotSettings" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="lz4net" Version="1.0.15.93" />
+    <PackageReference Include="xxHash.Core" Version="0.3.0" />
+  </ItemGroup>
+
+</Project>
