@@ -7,6 +7,8 @@
     <Description>LZ4 Frame compression &amp; decompression for .NET</Description>
     <Copyright>Copyright © 2018 Ulysses Wu &amp; Rune Henriksen</Copyright>
     <PackageProjectUrl>https://github.com/UlyssesWu/LZ4.Frame</PackageProjectUrl>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>0.1.0</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

@@ -1,5 +1,10 @@
 # LZ4.Frame
+[![NuGet version](https://badge.fury.io/nu/LZ4.Frame.svg)](https://badge.fury.io/nu/LZ4.Frame)
+
 [LZ4 Frame](https://github.com/lz4/lz4/blob/dev/doc/lz4_Frame_format.md) compress & decompress for .NET based on [lz4net](https://github.com/MiloszKrajewski/lz4net).
+
+## Install
+`PM > Install-Package LZ4.Frame`
 
 ## Why not...
 
