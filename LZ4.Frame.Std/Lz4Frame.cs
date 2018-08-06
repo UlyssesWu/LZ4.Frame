@@ -1,13 +1,9 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
-
-#if NETFX
-using Extensions.Data;
-#endif
-#if NETSTANDARD
 using NeoSmart.Hashing.XXHash.Core;
-#endif
+// ReSharper disable InconsistentNaming
+// ReSharper disable RedundantCaseLabel
 
 namespace LZ4.Frame
 {
@@ -46,7 +42,6 @@ namespace LZ4.Frame
             using (var bw = new BinaryWriter(ms))
             {
                 uint contentChecksum = 0;
-                byte[] result = null;
                 int originalLength = (int)input.Length;
                 int len = originalLength;
                 input.Seek(0, SeekOrigin.Begin);
@@ -234,8 +229,8 @@ namespace LZ4.Frame
             var fdLength = 2;
             // Parse flags
             var flg = br.ReadByte();
-            bool version = ((flg | 0b00000001) >> 6) == 1;
-            bool blockIndependenceFlag = ((flg & 0b00100000) >> 5) == 1;
+            //bool version = ((flg | 0b00000001) >> 6) == 1;
+            //bool blockIndependenceFlag = ((flg & 0b00100000) >> 5) == 1;
             bool blockChecksumFlag = ((flg & 0b00010000) >> 4) == 1;
             bool contentSizeFLag = ((flg & 0b00001000) >> 3) == 1;
             bool contentChecksumFlag = ((flg & 0b00000100) >> 2) == 1;

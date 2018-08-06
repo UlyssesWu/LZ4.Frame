@@ -47,8 +47,8 @@
     <PackageReference Include="lz4net">
       <Version>1.0.15.93</Version>
     </PackageReference>
-    <PackageReference Include="xxHash.NET">
-      <Version>1.0.2</Version>
+    <PackageReference Include="xxHash.Core">
+      <Version>0.3.0</Version>
     </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
