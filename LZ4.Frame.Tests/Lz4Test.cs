@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
-using LZ4.Frame;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace LZ4.Frame.Tests
@@ -13,7 +12,7 @@ namespace LZ4.Frame.Tests
         public void TestCompress()
         {
             var resPath = Path.Combine(Environment.CurrentDirectory, @"..\..\Res");
-            var path = Path.Combine(resPath, "psb.lz4");
+            var path = Path.Combine(resPath, "psb3.lz4");
             using (var fs = File.OpenRead(path))
             {
                 var decoded = LZ4Frame.Decompress(fs);
@@ -27,10 +26,22 @@ namespace LZ4.Frame.Tests
         public void TestDecompress()
         {
             var resPath = Path.Combine(Environment.CurrentDirectory, @"..\..\Res");
-            var path = Path.Combine(resPath, "psb.lz4");
+            var path = Path.Combine(resPath, "psb2.lz4");
             using (var fs = File.OpenRead(path))
             {
                 var result = LZ4Frame.Decompress(fs);
+                //File.WriteAllBytes("psb.psb", result);
+            }
+        }
+
+        [TestMethod]
+        public void TestDecompress2()
+        {
+            var resPath = Path.Combine(Environment.CurrentDirectory, @"..\..\Res");
+            var path = Path.Combine(resPath, "compress.lz4");
+            using (var fs = File.OpenRead(path))
+            {
+                var output = lz4.LZ4Helper.Decompress(File.ReadAllBytes(path));
             }
         }
     }

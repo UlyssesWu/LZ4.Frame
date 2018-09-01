@@ -235,7 +235,7 @@ namespace LZ4.Frame
             // Parse flags
             var flg = br.ReadByte();
             //bool version = ((flg | 0b00000001) >> 6) == 1;
-            //bool blockIndependenceFlag = ((flg & 0b00100000) >> 5) == 1;
+            bool blockIndependenceFlag = ((flg & 0b00100000) >> 5) == 1;
             bool blockChecksumFlag = ((flg & 0b00010000) >> 4) == 1;
             bool contentSizeFLag = ((flg & 0b00001000) >> 3) == 1;
             bool contentChecksumFlag = ((flg & 0b00000100) >> 2) == 1;
@@ -286,7 +286,7 @@ namespace LZ4.Frame
             //Block
             while (true)
             {
-                //pos = br.BaseStream.Position;
+                //var pos = br.BaseStream.Position;
                 var blockSize = br.ReadInt32();
                 if (blockSize == 0)
                 {
@@ -322,7 +322,7 @@ namespace LZ4.Frame
                     else
                     {
                         var outputLen = LZ4Codec.Decode(blockData, 0, blockData.Length, buffer, outputOffset,
-                            blockMaxSize > sizeRemain ? sizeRemain : blockMaxSize);
+                           blockMaxSize > sizeRemain ? sizeRemain : blockMaxSize);
                         outputOffset += outputLen;
                     }
                 }
@@ -338,6 +338,7 @@ namespace LZ4.Frame
                         var outputLen = LZ4Codec.Decode(blockData, 0, blockData.Length, decoded, 0, blockMaxSize);
                         ms.Write(decoded, 0, outputLen);
                         outputOffset += outputLen;
+                        //var dst = br.BaseStream.Position;
                     }
                 }
 

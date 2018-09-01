@@ -17,10 +17,14 @@ lz4.net is a C++/CLI wrapper for native LZ4. I love C++/CLI solutions but that m
 ## TODO
 These features are not implemented:
 
-* Block dependency (when Block Independence flag = 0)
+* Linked Block (when Block Independence flag = 0)
 * Dictionary (when Dictionary ID != 0)
 * Skippable Frames
 * Legacy frame
+
+If you get `Unhandled ArgumentException: LZ4 block is corrupted, or invalid length has been given.`, your lz4 file is most likely using Linked Block and Dictionary. I currently couldn't find a workaround (please switch to lz4.net) for this because lz4net do not have any Dictionary support.
+
+I'd appreciate it if someone can add Dictionary support for this.
 
 ## LICENSE
 **MIT**

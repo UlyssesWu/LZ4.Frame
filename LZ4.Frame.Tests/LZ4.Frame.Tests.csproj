@@ -45,6 +45,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="IonKiwi.lz4.net">
+      <Version>1.0.10</Version>
+    </PackageReference>
     <PackageReference Include="MSTest.TestAdapter">
       <Version>1.2.1</Version>
     </PackageReference>
