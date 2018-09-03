@@ -19,12 +19,12 @@ These features are not implemented:
 
 * Linked Block (when Block Independence flag = 0)
 * Dictionary (when Dictionary ID != 0)
-* Skippable Frames
+* Skippable Frame
 * Legacy frame
 
-If you get `Unhandled ArgumentException: LZ4 block is corrupted, or invalid length has been given.`, your lz4 file is most likely using Linked Block and Dictionary. I currently couldn't find a workaround (please switch to lz4.net) for this because lz4net do not have any Dictionary support.
+If you get `Unhandled ArgumentException: LZ4 block is corrupted, or invalid length has been given.`, your lz4 file is most likely using Linked Block and Dictionary. I currently couldn't find a workaround (please switch to lz4.net) for this because lz4net does not have any Dictionary support.
 
-I'd appreciate it if someone can add Dictionary support for this.
+I'd appreciate it if someone could add Dictionary support for this.
 
 ## LICENSE
 **MIT**

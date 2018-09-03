@@ -19,6 +19,7 @@ namespace LZ4.Frame.Tests
                 var encoded = LZ4Frame.Compress(new MemoryStream(decoded), useContentSize: false);
                 var decoded2 = LZ4Frame.Decompress(new MemoryStream(encoded));
                 Assert.IsTrue(decoded2.SequenceEqual(decoded));
+                //var canRead = fs.CanRead;
             }
         }
 
@@ -26,10 +27,11 @@ namespace LZ4.Frame.Tests
         public void TestDecompress()
         {
             var resPath = Path.Combine(Environment.CurrentDirectory, @"..\..\Res");
-            var path = Path.Combine(resPath, "psb2.lz4");
+            var path = Path.Combine(resPath, "psb3.lz4");
             using (var fs = File.OpenRead(path))
             {
                 var result = LZ4Frame.Decompress(fs);
+                //var pos = fs.Position;
                 //File.WriteAllBytes("psb.psb", result);
             }
         }

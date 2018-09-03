@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
+using System.Text;
 #if NETFX
 using Extensions.Data;
 #endif
@@ -33,7 +34,7 @@ namespace LZ4.Frame
         /// <summary>
         /// LZ4 Frame Compress
         /// </summary>
-        /// <param name="input">stream to be compressed</param>
+        /// <param name="input">stream to be compressed (won't be closed)</param>
         /// <param name="blockSizeType">max size (before compress) per block</param>
         /// <param name="useIndependenceBlock">only True works</param>
         /// <param name="useUncompressedBlock">If a block is better not to compress, will use original data</param>
@@ -210,7 +211,7 @@ namespace LZ4.Frame
                 {
                     bw.Write(contentChecksum);
                 }
-                br.Dispose();
+                //br.Dispose();
                 return ms.ToArray();
             }
         }
@@ -218,7 +219,7 @@ namespace LZ4.Frame
         /// <summary>
         /// LZ4 Frame Decompress
         /// </summary>
-        /// <param name="input">stream to be decompressed</param>
+        /// <param name="input">stream to be decompressed (won't be closed)</param>
         /// <returns></returns>
         public static byte[] Decompress(Stream input)
         {
@@ -364,8 +365,8 @@ namespace LZ4.Frame
                     //throw new FormatException("Content Checksum incorrect");
                 }
             }
-
-            br.Dispose();
+            
+            //br.Dispose();
             return output;
         }
     }
