@@ -176,7 +176,7 @@ namespace LZ4.Frame
                         if (compressed.Length > blockData.Length && useUncompressedBlock)
                         {
                             blockSize = blockData.Length;
-                            blockSize |= 1 << 31;
+                            blockSize = -blockSize; //set the highest bit to 1
                             bw.Write(blockSize);
                             bw.Write(blockData);
                         }
@@ -193,10 +193,6 @@ namespace LZ4.Frame
                     }
                     //else //don't use independent blocks, not implemented
                     //{
-                    //    blockOriSize |= 0 << 31;
-                    //    bw.Write(blockOriSize);
-                    //    bw.Write(br.ReadBytes(blockOriSize));
-                    //    //Block Checksum unsupported
                     //}
 
                     if (shouldEnd)
@@ -298,12 +294,12 @@ namespace LZ4.Frame
                 //blockCount++;
                 //var binary = Convert.ToString(blockSize, 2);
                 // Check if the data is compressed by inspecting the highest bit - 0 for compressed, 1 for uncompressed
-                if ((blockSize >> 31) == 1)
+                if (blockSize < 0)
                 {
                     // uncompressed
                     dataIsUncompressed = true;
                     // flip the bit back
-                    blockSize &= ~(1 << 31);
+                    blockSize = -blockSize;
                 }
 
                 var blockData = br.ReadBytes(blockSize);
@@ -365,7 +361,7 @@ namespace LZ4.Frame
                     //throw new FormatException("Content Checksum incorrect");
                 }
             }
-            
+
             //br.Dispose();
             return output;
         }

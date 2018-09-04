@@ -34,5 +34,9 @@ Rune Henriksen's [lz4 frame formatter](https://github.com/Pectojin/lz4_frame_for
 
 [LZ4 Frame Format Description](https://github.com/lz4/lz4/blob/dev/doc/lz4_Frame_format.md)
 
+## Thanks
+
+Thanks @[vpenades](https://github.com/vpenades) for helping me improve this lib.
+
 ---
 by Ulysses
