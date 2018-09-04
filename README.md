@@ -3,6 +3,9 @@
 
 [LZ4 Frame](https://github.com/lz4/lz4/blob/dev/doc/lz4_Frame_format.md) compress & decompress for .NET based on [lz4net](https://github.com/MiloszKrajewski/lz4net).
 
+## Alternative
+This lib is will be replaced by [K4os.Compression.LZ4](https://github.com/MiloszKrajewski/K4os.Compression.LZ4) once it's finished ([check progress](https://github.com/MiloszKrajewski/K4os.Compression.LZ4/issues/5)) with [LZ4 Frame support](https://github.com/MiloszKrajewski/lz4net/blob/master/doc/compatibility.md). 
+
 ## Install
 `PM > Install-Package LZ4.Frame`
 

@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard1.3</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>LZ4.Frame</RootNamespace>
     <Authors>Ulysses Wu &amp; Rune Henriksen</Authors>
     <Description>LZ4 Frame compression &amp; decompression for .NET</Description>
@@ -27,7 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="lz4net" Version="1.0.15.93" />
+    <PackageReference Include="lz4net.netcore.signed" Version="1.0.15.93" />
     <PackageReference Include="xxHash.Core" Version="0.3.0" />
   </ItemGroup>
 
