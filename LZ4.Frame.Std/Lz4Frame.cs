@@ -1,7 +1,10 @@
-﻿using System;
+﻿// The following code is licensed under MIT License. AUTHOR: Ulysses Wu (wdwxy12345@gmail.com) & Rune Henriksen (ruju@itu.dk)
+
+using System;
 using System.Diagnostics;
 using System.IO;
 using System.Text;
+
 #if NETFX
 using Extensions.Data;
 #endif
@@ -15,17 +18,41 @@ namespace LZ4.Frame
 {
     //https://github.com/lz4/lz4/blob/dev/doc/lz4_Frame_format.md
 
+    /// <summary>
+    /// Max size for each LZ4 block
+    /// </summary>
     public enum LZ4MaxBlockSize
     {
+        /// <summary>
+        /// 4MB by default
+        /// </summary>
         Auto = 0,
+        /// <summary>
+        /// 64 KB
+        /// </summary>
         KB64 = 4,
+        /// <summary>
+        /// 256 KB
+        /// </summary>
         KB256 = 5,
+        /// <summary>
+        /// 1 MB
+        /// </summary>
         MB1 = 6,
+        /// <summary>
+        /// 4 MB
+        /// </summary>
         MB4 = 7,
     }
 
+    /// <summary>
+    /// LZ4 Frame Compression
+    /// </summary>
     public class LZ4Frame
     {
+        /// <summary>
+        /// LZ4 Frame Header Signature
+        /// </summary>
         public const int MAGIC = 0x184D2204;
 
         internal static readonly int[] BlockMaximum = new[]

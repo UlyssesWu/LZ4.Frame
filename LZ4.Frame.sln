@@ -8,8 +8,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LZ4.Frame.Std", "LZ4.Frame.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LZ4.Frame", "LZ4.Frame.Fx\LZ4.Frame.csproj", "{803E355E-A55D-4AF4-88BD-5EAB62FD68AD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LZ4.Frame.CoreTest", "LZ4.Frame.CoreTest\LZ4.Frame.CoreTest.csproj", "{5457C7FD-F9D6-4273-82C2-571AD7F095AD}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -28,10 +26,6 @@ Global
 		{803E355E-A55D-4AF4-88BD-5EAB62FD68AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{803E355E-A55D-4AF4-88BD-5EAB62FD68AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{803E355E-A55D-4AF4-88BD-5EAB62FD68AD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5457C7FD-F9D6-4273-82C2-571AD7F095AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5457C7FD-F9D6-4273-82C2-571AD7F095AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5457C7FD-F9D6-4273-82C2-571AD7F095AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5457C7FD-F9D6-4273-82C2-571AD7F095AD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
