@@ -4,7 +4,7 @@
 [LZ4 Frame](https://github.com/lz4/lz4/blob/dev/doc/lz4_Frame_format.md) compress & decompress for .NET based on [lz4net](https://github.com/MiloszKrajewski/lz4net).
 
 ## Alternative
-This lib is will be replaced by [K4os.Compression.LZ4](https://github.com/MiloszKrajewski/K4os.Compression.LZ4) once it's finished ([check progress](https://github.com/MiloszKrajewski/K4os.Compression.LZ4/issues/5)) with [LZ4 Frame support](https://github.com/MiloszKrajewski/lz4net/blob/master/doc/compatibility.md). 
+This lib is a simple, pure managed implementation. You should choose [K4os.Compression.LZ4](https://github.com/MiloszKrajewski/K4os.Compression.LZ4) for a more reliable implementation with dictionary support.
 
 ## Install
 `PM > Install-Package LZ4.Frame`
@@ -12,7 +12,7 @@ This lib is will be replaced by [K4os.Compression.LZ4](https://github.com/Milosz
 ## Why not...
 
 ### [lz4net](https://github.com/MiloszKrajewski/lz4net)
-lz4net is great, but [lacking](https://github.com/MiloszKrajewski/lz4net#compatibility) LZ4 Frame support. This project is based on lz4net and enables LZ4 Frame support.
+lz4net is great, but [lacking](https://github.com/MiloszKrajewski/lz4net#compatibility) LZ4 Frame support. This project is based on lz4net and enables LZ4 Frame support. (use [K4os.Compression.LZ4](https://github.com/MiloszKrajewski/K4os.Compression.LZ4) instead)
 
 ### [lz4.net](https://github.com/IonKiwi/lz4.net)
 lz4.net is a C++/CLI wrapper for native LZ4. I love C++/CLI solutions but that means it only works on Windows platforms. This project is fully managed, therefore it's easier to compile, modify, and go cross-platform.
